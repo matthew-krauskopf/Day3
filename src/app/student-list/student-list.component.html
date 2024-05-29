@@ -1,0 +1,16 @@
+<div>
+  <h2>Students</h2>
+  <ul>
+    <li *ngFor = "let student of students">
+      <button type="button" (click)="onSelect(student)">{{student.name}}</button>
+      <button (click)="deleteStudent(student); selectedStudent = undefined">X</button>
+    </li>
+  </ul>
+
+  <label for="name">Add Student:</label>
+  <input id="name" #studentName placeholder="name">
+  <button (click)="addStudent(studentName.value); studentName.value=''">Add</button>
+</div>
+
+<app-student-detail [student]="selectedStudent"></app-student-detail>
+

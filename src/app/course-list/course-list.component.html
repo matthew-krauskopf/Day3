@@ -1,0 +1,13 @@
+<div>
+  <h2>Courses</h2>
+  <ul>
+    <li *ngFor = "let course of courses">
+      <button (click)="onSelect(course)">{{course.name}}</button>
+      <button (click)="deleteCourse(course); selectedCourse=undefined;">X</button>
+    </li>
+  </ul>
+  <label for="name">Add Course:</label>
+  <input id="name" #courseName placeholder="name">
+  <button (click)="addNewCourse(courseName.value); courseName.value=''">Add</button>
+</div>
+<app-course-detail [course]="selectedCourse"></app-course-detail>

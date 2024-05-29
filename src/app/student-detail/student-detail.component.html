@@ -1,0 +1,29 @@
+<div *ngIf="student">
+  <div>
+    <h3>{{student.name}}</h3>
+    <label for="name">Student Name:</label>
+    <input id="name" [(ngModel)]="student.name" placeholder="name">
+  </div>
+  <div>
+    <label for="isActive">Active: {{student.isActive}}</label>
+    <div>
+      <button (click)="toggleActiveness()">Toggle Active Status</button>
+    </div>
+  </div>
+  <div *ngIf="student.isActive">
+    <label for="enrolledCourses">Enrolled Courses:</label>
+    <ul>
+      <li *ngFor = "let course of getStudentsCourses()">
+        <label>{{course.name}}</label>
+        <button (click)="removeCourse(course.id)">X</button>
+      </li>
+    </ul>
+    <div *ngIf="student.isActive">
+      <label for="addCourse">&nbsp;Add Course: </label>
+      <select [(ngModel)]="courseToAdd">
+        <option *ngFor="let course of courses" [ngValue]="course.id">{{course.name}}</option>
+      </select>
+    <button id="courseToAdd" (click)="addCourse()">Add course</button>
+    </div>
+  </div>
+</div>
