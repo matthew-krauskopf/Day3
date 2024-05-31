@@ -1,0 +1,4 @@
+.mat-side-nav {
+    height: 100%;
+    grid-template-columns: 1fr;
+}

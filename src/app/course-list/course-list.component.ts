@@ -5,11 +5,12 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, tap, catchError, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { CourseDetailComponent } from '../course-detail/course-detail.component';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 @Component({
   selector: 'app-course-list',
   standalone: true,
-  imports: [NgFor, CourseDetailComponent],
+  imports: [NgFor, CourseDetailComponent, MatGridListModule],
   templateUrl: './course-list.component.html',
   styleUrl: './course-list.component.css'
 })

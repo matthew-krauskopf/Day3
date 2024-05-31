@@ -1,2 +1,15 @@
-<app-student-list></app-student-list>
-<app-course-list></app-course-list>
+<mat-drawer-container class="main-side-nav">
+    <mat-drawer mode="side" opened>
+        <button mat-button>Home</button>
+        <button mat-button (click)="studentsPage()">Students</button>
+        <button mat-button (click)="coursesPage()">Courses</button>
+    </mat-drawer>
+    <mat-drawer-content>
+        <div id="studentPanel">
+            <app-student-list></app-student-list>
+        </div>
+        <div id="coursePanel">
+            <app-course-list></app-course-list>
+        </div>
+    </mat-drawer-content>
+</mat-drawer-container>
