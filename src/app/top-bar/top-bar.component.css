@@ -1,0 +1,16 @@
+.top-bar {
+    background-color: #673BB7;
+}
+
+.top-bar-text {
+    color: white;
+}
+
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.button {
+    background-color:#FFD641;
+    color: black;
+}

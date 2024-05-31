@@ -1,5 +1,5 @@
 import { NgFor } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Courses } from '../courses';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap, catchError, of } from 'rxjs';
@@ -20,7 +20,7 @@ import {MatGridListModule} from '@angular/material/grid-list';
 })
 export class CourseListComponent {
 
-  courses! : Courses[];
+  public courses! : Courses[];
   selectedCourse?: Courses;
 
   baseUrl : string = 'https://json-server-vercel-matt-krauskopfs-projects.vercel.app/';
@@ -39,11 +39,6 @@ export class CourseListComponent {
     .pipe(
       tap(_ => console.log('Fetched Courses')),
       catchError(this.handleError<Courses[]>('initCourses')));
-  }
-
-  public getCourses() : Courses[] {
-    if (!this.courses) this.initCourses().subscribe(c => this.courses = c);
-    return this.courses;
   }
 
   addNewCourse(name : String) {

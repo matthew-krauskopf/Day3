@@ -21,7 +21,7 @@
     <div *ngIf="student.isActive">
       <label for="addCourse">&nbsp;Add Course: </label>
       <select [(ngModel)]="courseToAdd">
-        <option *ngFor="let course of courses" [ngValue]="course.id">{{course.name}}</option>
+        <option *ngFor="let course of this.courseListComponent.courses" [ngValue]="course.id">{{course.name}}</option>
       </select>
     <button id="courseToAdd" (click)="addCourse()">Add course</button>
     </div>

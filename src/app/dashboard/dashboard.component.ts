@@ -4,12 +4,14 @@ import { StudentListComponent } from '../student-list/student-list.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import { NgIf } from '@angular/common';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatIconModule} from '@angular/material/icon';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
   imports: [MatSidenavModule, StudentListComponent, CourseListComponent, NgIf,
-    MatButtonModule],
+    MatButtonModule, MatGridListModule, MatIconModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
 })

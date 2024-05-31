@@ -4,8 +4,6 @@ import { NgIf, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Courses } from '../courses';
 import { CourseListComponent } from '../course-list/course-list.component';
-import { HttpClient } from '@angular/common/http';
-import { Observable, tap, catchError, of } from 'rxjs';
 
 @Component({
   selector: 'app-student-detail',
@@ -17,21 +15,9 @@ import { Observable, tap, catchError, of } from 'rxjs';
 export class StudentDetailComponent {
 
   @Input() student? : Students;
-  courses? : Courses[];
   courseToAdd? : number;
 
-  baseUrl : string = 'https://json-server-vercel-matt-krauskopfs-projects.vercel.app/';
-  coursesUrl : string = this.baseUrl + "courses";
-
-  constructor(private http : HttpClient) {
-    this.initCourses().subscribe(c => this.courses = c);
-  }
-
-  private initCourses() : Observable<Courses[]> {
-    return this.http.get<Courses[]>(this.coursesUrl)
-    .pipe(
-      tap(_ => console.log('Fetched Courses')),
-      catchError(this.handleError<Courses[]>('initCourses')));
+  constructor(public courseListComponent : CourseListComponent) {
   }
 
   removeCourse(removedId : number) : void {
@@ -49,16 +35,11 @@ export class StudentDetailComponent {
   }
 
   getStudentsCourses() : Courses[] {
-    return this.courses!.filter((course) => this.student!.enrolledCourses.includes(course.id));
-  }
-
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-
-      console.log(`${operation} failed: ${error.message}`);
-
-      return of(result as T);
+    var courses = this.courseListComponent.courses;
+    if (courses) {
+      return courses.filter((course) => this.student!.enrolledCourses.includes(course.id));
+    } else {
+      return [];
     }
   }
 }
