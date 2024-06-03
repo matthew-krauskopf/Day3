@@ -5,12 +5,15 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, tap, of } from 'rxjs';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { StudentDetailComponent } from '../student-detail/student-detail.component';
-import {MatGridListModule} from '@angular/material/grid-list';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatButton } from '@angular/material/button';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatListModule} from '@angular/material/list';
 
 @Component({
   selector: 'app-student-list',
   standalone: true,
-  imports: [ FormsModule, NgIf, NgFor, StudentDetailComponent, MatGridListModule ],
+  imports: [ FormsModule, NgIf, NgFor, StudentDetailComponent, MatGridListModule, MatButton, MatDividerModule, MatListModule ],
   templateUrl: './student-list.component.html',
   styleUrl: './student-list.component.css'
 })

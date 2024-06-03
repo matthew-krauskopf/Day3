@@ -1,0 +1,27 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.student-button {
+    justify-content: left !important;
+    height: 1000px !important;
+    width: 200px;
+}
+
+.close-button {
+    justify-content: center;
+    width: 5%
+}
+
+.header-text {
+    font-size: x-large;
+    font-weight: bold;
+    border-color: #FFDA58;
+    border-style: solid;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0; 
+    width: fit-content;
+    height: 45px;
+    border-width: 2px;
+}
