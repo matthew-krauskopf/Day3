@@ -25,3 +25,18 @@
     height: 45px;
     border-width: 2px;
 }
+
+.student-card {
+    width: 40%;
+    float: left;
+    margin: 20px
+}
+
+.detail-card { 
+    margin: 20px;
+}
+
+.card-container {
+    height: 90vh;
+    overflow-y: scroll;
+}

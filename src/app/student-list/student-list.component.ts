@@ -9,11 +9,14 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatButton } from '@angular/material/button';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatListModule} from '@angular/material/list';
+import {MatCardModule} from '@angular/material/card';
 
 @Component({
   selector: 'app-student-list',
   standalone: true,
-  imports: [ FormsModule, NgIf, NgFor, StudentDetailComponent, MatGridListModule, MatButton, MatDividerModule, MatListModule ],
+  imports: [ FormsModule, NgIf, NgFor, StudentDetailComponent, MatGridListModule, MatButton, MatDividerModule, MatListModule ,
+    MatCardModule
+  ],
   templateUrl: './student-list.component.html',
   styleUrl: './student-list.component.css'
 })
@@ -44,7 +47,8 @@ export class StudentListComponent {
     const trimmedName : string = name.trim();
     if (trimmedName) {
       let newStudent : Students = {
-        "name" : trimmedName,
+        "firstName" : trimmedName,
+        "lastName": "",
         "id": this.getNewStudentId(),
         "isActive": true,
         "enrolledCourses": []

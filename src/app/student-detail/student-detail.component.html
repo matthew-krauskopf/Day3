@@ -1,23 +1,29 @@
 <div *ngIf="student">
   <div>
-    <h3>{{student.name}}</h3>
-    <label for="name">Student Name:</label>
-    <input id="name" [(ngModel)]="student.name" placeholder="name">
+    <div class="header-text">Editing {{student.firstName}} {{student.lastName}}</div>
+    <form>
+      <mat-form-field class="name-form">
+        <mat-label>First Name</mat-label>
+        <input matInput id="firstName" [name]="student.firstName" [(ngModel)]="student.firstName" value={{student.firstName}}>
+      </mat-form-field>
+      <br>
+      <mat-form-field class="name-form">
+        <mat-label>Last Name</mat-label>
+        <input matInput id="lastName" [name]="student.lastName" [(ngModel)]="student.lastName" value={{student.lastName}}>
+      </mat-form-field>
+    </form>
   </div>
   <div>
-    <label for="isActive">Active: {{student.isActive}}</label>
-    <div>
-      <button (click)="toggleActiveness()">Toggle Active Status</button>
-    </div>
+    <mat-checkbox [(ngModel)]="student.isActive">Active</mat-checkbox>
   </div>
   <div *ngIf="student.isActive">
-    <label for="enrolledCourses">Enrolled Courses:</label>
-    <ul>
-      <li *ngFor = "let course of getStudentsCourses()">
+    <label for="enrolledCourses"><h4>Enrolled Courses</h4></label>
+    <mat-list>
+      <mat-list-item *ngFor = "let course of getStudentsCourses()">
         <label>{{course.name}}</label>
-        <button (click)="removeCourse(course.id)">X</button>
-      </li>
-    </ul>
+        <button mat-button (click)="removeCourse(course.id)">X</button>
+      </mat-list-item>
+    </mat-list>
     <div *ngIf="student.isActive">
       <label for="addCourse">&nbsp;Add Course: </label>
       <select [(ngModel)]="courseToAdd">

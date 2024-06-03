@@ -4,11 +4,18 @@ import { NgIf, NgFor } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Courses } from '../courses';
 import { CourseListComponent } from '../course-list/course-list.component';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatListModule} from '@angular/material/list';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-student-detail',
   standalone: true,
-  imports: [NgFor, NgIf, FormsModule, CourseListComponent],
+  imports: [NgFor, NgIf, FormsModule, CourseListComponent, MatInputModule, MatFormFieldModule, MatCheckboxModule, MatListModule,
+    MatButtonModule
+  ],
   templateUrl: './student-detail.component.html',
   styleUrl: './student-detail.component.css'
 })
@@ -28,10 +35,6 @@ export class StudentDetailComponent {
     if (this.student!.isActive == true && this.courseToAdd && !this.student!.enrolledCourses.includes(this.courseToAdd)) {
        this.student!.enrolledCourses.push(this.courseToAdd);
     }
-  }
-
-  toggleActiveness() : void {
-    this.student!.isActive = !this.student!.isActive;
   }
 
   getStudentsCourses() : Courses[] {

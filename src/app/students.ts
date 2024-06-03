@@ -1,6 +1,7 @@
 export interface Students {
     id : number,
-    name : string,
+    firstName : string,
+    lastName: string,
     isActive: boolean,
     enrolledCourses: number[]
 }
