@@ -1,8 +1,13 @@
 <div class="card-container">
   <mat-card class="student-card">
     <mat-card-content>
+      <div class="header-text">
+        <span>Students</span>
+        <button class="add-button" mat-icon-button (click)="openDialog()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
       <div>
-        <div class="header-text">Students</div>
         <mat-list>
           <mat-list-item *ngFor="let student of students">
             <button class="student-button" mat-button type="button" (click)="onSelect(student)">
@@ -11,13 +16,9 @@
             </button>
             <span class="example-spacer"></span>
             <button mat-button class="close-button"
-              (click)="deleteStudent(student); selectedStudent = undefined">X</button>
+              (click)="deleteStudent(student); selectedStudent = undefined"><mat-icon>close</mat-icon></button>
           </mat-list-item>
         </mat-list>
-
-        <label for="name">Add Student:</label>
-        <input id="name" #studentName placeholder="name">
-        <button (click)="addStudent(studentName.value); studentName.value=''">Add</button>
       </div>
     </mat-card-content>
   </mat-card>

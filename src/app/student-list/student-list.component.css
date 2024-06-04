@@ -40,3 +40,12 @@
     height: 90vh;
     overflow-y: scroll;
 }
+
+.add-button {
+    color: gray;
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    align-items: center;
+
+}
