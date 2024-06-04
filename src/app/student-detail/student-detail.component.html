@@ -14,22 +14,20 @@
     </form>
   </div>
   <div>
-    <mat-checkbox [(ngModel)]="student.isActive">Active</mat-checkbox>
+    <mat-checkbox class="active-checkbox" color=blue [(ngModel)]="student.isActive">Active</mat-checkbox>
   </div>
   <div *ngIf="student.isActive">
-    <label for="enrolledCourses"><h4>Enrolled Courses</h4></label>
+    <div>
+    <label for="enrolledCourses"><span class="courses-text">Enrolled Courses</span></label>
+    <button class="add-button" (click)="openDialog()" mat-icon-button>
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
     <mat-list>
       <mat-list-item *ngFor = "let course of getStudentsCourses()">
         <label>{{course.name}}</label>
-        <button mat-button (click)="removeCourse(course.id)">X</button>
+        <button mat-button (click)="removeCourse(course.id)"><mat-icon>close</mat-icon></button>
       </mat-list-item>
     </mat-list>
-    <div *ngIf="student.isActive">
-      <label for="addCourse">&nbsp;Add Course: </label>
-      <select [(ngModel)]="courseToAdd">
-        <option *ngFor="let course of this.courseListComponent.courses" [ngValue]="course.id">{{course.name}}</option>
-      </select>
-    <button id="courseToAdd" (click)="addCourse()">Add course</button>
-    </div>
   </div>
 </div>

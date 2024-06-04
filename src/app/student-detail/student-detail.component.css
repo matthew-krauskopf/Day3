@@ -15,5 +15,20 @@
     padding-top: 5px;
     background-color: white;
     width: 40vw;
+}
 
+.active-checkbox {
+    color: #FFDA58;
+}
+
+.courses-text {
+    font-weight: bold;
+}
+
+.add-button {
+    color: gray;
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    align-items: center;
 }
