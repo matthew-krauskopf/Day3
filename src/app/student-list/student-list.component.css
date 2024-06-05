@@ -4,7 +4,7 @@
 
 .student-button {
     justify-content: left !important;
-    height: 1000px !important;
+    height: fit-content;
     width: 200px;
     text-align: left;
 }

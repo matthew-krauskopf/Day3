@@ -1,4 +1,4 @@
-import { Component, Inject, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Students } from '../students';
 import { Courses } from '../courses';
 import { NgFor, NgIf } from '@angular/common'; 
@@ -14,7 +14,6 @@ import { MatIconModule } from '@angular/material/icon';
 
 import {
   MatDialog,
-  MAT_DIALOG_DATA,
   MatDialogRef,
   MatDialogTitle,
   MatDialogContent,
@@ -42,10 +41,11 @@ export class StudentListComponent {
   constructor(public dialog : MatDialog) {}
 
   openDialog(): void {
-    const dialogRef = this.dialog.open(AddStudentDialog, {data : {firstName: "", lastName: ""}});
+    const dialogRef = this.dialog.open(AddStudentDialog);
 
     dialogRef.afterClosed().subscribe(newStudent => {
-      this.addStudent(newStudent.firstName, newStudent.lastName);
+      if (newStudent.firstName && newStudent.lastName)
+        this.addStudent(newStudent.firstName, newStudent.lastName);
     });
   }
 
@@ -83,8 +83,8 @@ export class StudentListComponent {
 }
 
 export interface NewStudent {
-  firstName: string;
-  lastName: string;
+  firstName?: string;
+  lastName?: string;
 }
 
 @Component({
@@ -103,9 +103,10 @@ export interface NewStudent {
   ]
 })
 export class AddStudentDialog {
+  newStudent : NewStudent = {};
+
   constructor(
-    public dialogRef: MatDialogRef<AddStudentDialog>,
-    @Inject(MAT_DIALOG_DATA) public newStudent: NewStudent,
+    public dialogRef: MatDialogRef<AddStudentDialog>
   ) {}
 
   onNoClick(): void {

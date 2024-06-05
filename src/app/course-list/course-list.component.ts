@@ -67,6 +67,7 @@ export class CourseListComponent {
 
   deleteCourse(courseToDelete : Courses) : void {
     this.courses = this.courses.filter(s => s != courseToDelete);
+    this.selectedCourse = undefined;
   }
 
   getNewCourseId() : number {

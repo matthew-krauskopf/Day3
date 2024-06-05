@@ -10,7 +10,7 @@
           <mat-list-item *ngFor="let course of courses">
             <button class="course-button" mat-button (click)="onSelect(course)">{{course.name}}</button>
             <button class="close-button" mat-button
-              (click)="deleteCourse(course); selectedCourse=undefined;"><mat-icon>close</mat-icon></button>
+              (click)="deleteCourse(course)"><mat-icon>close</mat-icon></button>
           </mat-list-item>
         </mat-list>
       </div>
