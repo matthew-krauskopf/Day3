@@ -6,10 +6,10 @@
     </mat-sidenav>
     <mat-sidenav-content>
         <div id="studentPanel">
-            <app-student-list></app-student-list>
+            <app-student-list [students]="students" [courses]="courses" ></app-student-list>
         </div>
         <div id="coursePanel">
-            <app-course-list></app-course-list>
+            <app-course-list [courses]="courses"></app-course-list>
         </div>
     </mat-sidenav-content>
 </mat-sidenav-container>

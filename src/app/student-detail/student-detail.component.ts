@@ -1,6 +1,6 @@
 import { Component, Input, Inject } from '@angular/core';
 import { Students } from '../students';
-import { NgIf, NgFor, CommonModule } from '@angular/common'; 
+import { NgIf, NgFor } from '@angular/common'; 
 import { FormsModule } from '@angular/forms';
 import { Courses } from '../courses';
 import { CourseListComponent } from '../course-list/course-list.component';
@@ -34,12 +34,12 @@ import {
 export class StudentDetailComponent {
 
   @Input() student? : Students;
+  @Input() courses! : Courses[];
 
-  constructor(public courseListComponent : CourseListComponent, public dialog : MatDialog) {
-  }
+  constructor(public dialog : MatDialog) {}
 
   openDialog() : void {
-    const dialogRef = this.dialog.open(AddCourseDialog, {data : {courseId: -1}});
+    const dialogRef = this.dialog.open(AddCourseDialog, {data : this.courses});
 
     dialogRef.afterClosed().subscribe(courseId => {
       if (courseId) {  
@@ -59,12 +59,7 @@ export class StudentDetailComponent {
   }
 
   getStudentsCourses() : Courses[] {
-    var courses = this.courseListComponent.courses;
-    if (courses) {
-      return courses.filter((course) => this.student!.enrolledCourses.includes(course.id));
-    } else {
-      return [];
-    }
+    return this.courses.filter((course) => this.student!.enrolledCourses.includes(course.id));
   }
 }
 
@@ -86,10 +81,11 @@ export class StudentDetailComponent {
   ]
 })
 export class AddCourseDialog {
+  courseId : number = -1;
+
   constructor(
     public dialogRef: MatDialogRef<AddCourseDialog>,
-    public courseListComponent : CourseListComponent,
-    @Inject(MAT_DIALOG_DATA) public courseId: number,
+    @Inject(MAT_DIALOG_DATA) public courses : Courses[]
   ) {}
 
   onNoClick(): void {

@@ -1,14 +1,12 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { Courses } from '../courses';
-import { HttpClient } from '@angular/common/http';
-import { Observable, tap, catchError, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { CourseDetailComponent } from '../course-detail/course-detail.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatListModule} from '@angular/material/list';
 import {MatCardModule} from '@angular/material/card';
-import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 
@@ -39,25 +37,13 @@ import {MatInputModule} from '@angular/material/input';
 })
 export class CourseListComponent {
 
-  public courses! : Courses[];
+  @Input() courses! : Courses[];
   selectedCourse?: Courses;
 
-  baseUrl : string = 'https://json-server-vercel-matt-krauskopfs-projects.vercel.app/';
-  coursesUrl : string = this.baseUrl + "courses";
-
-  constructor(private http : HttpClient, public dialog: MatDialog) {
-    this.initCourses().subscribe(c => this.courses = c);
-  }
+  constructor(public dialog: MatDialog) {}
 
   onSelect(course: Courses) : void {
     this.selectedCourse = course;
-  }
-
-  private initCourses() : Observable<Courses[]> {
-    return this.http.get<Courses[]>(this.coursesUrl)
-    .pipe(
-      tap(_ => console.log('Fetched Courses')),
-      catchError(this.handleError<Courses[]>('initCourses')));
   }
 
   openDialog(): void {
@@ -89,16 +75,6 @@ export class CourseListComponent {
       max = max > course.id ? max : course.id;
     }
     return max+1;
-  }
-
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-
-      console.log(`${operation} failed: ${error.message}`);
-
-      return of(result as T);
-    }
   }
 }
 

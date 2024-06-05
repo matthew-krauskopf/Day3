@@ -1,8 +1,7 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, Input } from '@angular/core';
 import { Students } from '../students';
+import { Courses } from '../courses';
 import { NgFor, NgIf } from '@angular/common'; 
-import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, tap, of } from 'rxjs';
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { StudentDetailComponent } from '../student-detail/student-detail.component';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -36,15 +35,11 @@ import {MatInputModule} from '@angular/material/input';
 })
 export class StudentListComponent {
 
-  students! : Students[];
+  @Input() students! : Students[];
+  @Input() courses! : Courses[];
   selectedStudent? : Students;
 
-  baseUrl : string = 'https://json-server-vercel-matt-krauskopfs-projects.vercel.app/';
-  studentsUrl : string = this.baseUrl + "students";
-
-  constructor(private http : HttpClient, public dialog : MatDialog) {
-    this.getStudents().subscribe(s => this.students = s);
-  }
+  constructor(public dialog : MatDialog) {}
 
   openDialog(): void {
     const dialogRef = this.dialog.open(AddStudentDialog, {data : {firstName: "", lastName: ""}});
@@ -56,13 +51,6 @@ export class StudentListComponent {
 
   onSelect(student : Students) : void {
     this.selectedStudent = student;
-  }
-
-  private getStudents() : Observable<Students[]> {
-    return this.http.get<Students[]>(this.studentsUrl)
-    .pipe(
-      tap(_ => console.log('Fetched Students')),
-      catchError(this.handleError<Students[]>('getStudents')));
   }
 
   addStudent(firstName : String, lastName : String) {
@@ -91,16 +79,6 @@ export class StudentListComponent {
       max = max > student.id ? max : student.id;
     }
     return max+1;
-  }
-
-  private handleError<T>(operation = 'operation', result?: T) {
-    return (error: any): Observable<T> => {
-      console.error(error);
-
-      console.log(`${operation} failed: ${error.message}`);
-
-      return of(result as T);
-    }
   }
 }
 

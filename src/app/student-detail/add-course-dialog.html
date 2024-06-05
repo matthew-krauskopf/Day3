@@ -4,7 +4,7 @@
         <mat-form-field>
             <mat-label>Course</mat-label>
             <mat-select [(ngModel)]="courseId">
-                <mat-option *ngFor="let course of courseListComponent.courses" [value]="course.id">{{course.name}}</mat-option>
+                <mat-option *ngFor="let course of courses" [value]="course.id">{{course.name}}</mat-option>
             </mat-select>
         </mat-form-field>
     </div>

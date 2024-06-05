@@ -24,7 +24,7 @@
   </mat-card>
   <mat-card *ngIf="selectedStudent" class="detail-card">
     <mat-card-content>
-      <app-student-detail [student]="selectedStudent"></app-student-detail>
+      <app-student-detail [student]="selectedStudent" [courses]="courses"></app-student-detail>
     </mat-card-content>
   </mat-card>
 </div>
