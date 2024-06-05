@@ -1,0 +1,13 @@
+<h2 mat-dialog-title>Add Course</h2>
+<mat-dialog-content>
+    <div>
+        <mat-form-field>
+            <mat-label>Course Name</mat-label>
+            <input matInput [(ngModel)]="newCourse" placeholder="">
+        </mat-form-field>
+    </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Cancel</button>
+    <button mat-button [mat-dialog-close]="newCourse" cdkFocusInitial>Add</button>
+</mat-dialog-actions>
