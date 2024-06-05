@@ -1,19 +1,24 @@
-<mat-grid-list cols="2">
-  <mat-grid-tile>
-    <div>
-      <h2>Courses</h2>
-      <ul>
-        <li *ngFor="let course of courses">
-          <button (click)="onSelect(course)">{{course.name}}</button>
-          <button (click)="deleteCourse(course); selectedCourse=undefined;">X</button>
-        </li>
-      </ul>
-      <label for="name">Add Course:</label>
-      <input id="name" #courseName placeholder="name">
-      <button (click)="addNewCourse(courseName.value); courseName.value=''">Add</button>
-    </div>
-  </mat-grid-tile>
-  <mat-grid-tile>
-    <app-course-detail [course]="selectedCourse"></app-course-detail>
-  </mat-grid-tile>
-</mat-grid-list>
+<div class="card-container">
+  <mat-card class="course-card">
+    <mat-card-content>
+      <div class="header-text">
+        <span>Courses</span>
+        <button class="add-button" mat-icon-button (click)="openDialog()"><mat-icon>add</mat-icon></button>
+      </div>
+      <div>
+        <mat-list>
+          <mat-list-item *ngFor="let course of courses">
+            <button class="course-button" mat-button (click)="onSelect(course)">{{course.name}}</button>
+            <button class="close-button" mat-button
+              (click)="deleteCourse(course); selectedCourse=undefined;"><mat-icon>close</mat-icon></button>
+          </mat-list-item>
+        </mat-list>
+      </div>
+    </mat-card-content>
+  </mat-card>
+  <mat-card *ngIf="selectedCourse" class="detail-card">
+    <mat-card-content>
+      <app-course-detail [course]="selectedCourse"></app-course-detail>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,52 @@
+.example-spacer {
+    flex: 1 1 auto;
+}
+
+.course-button {
+    justify-content: left !important;
+    height: 1000px !important;
+    width: 200px;
+    text-align: left;
+}
+
+.close-button {
+    justify-content: center;
+    width: 5%
+}
+
+.header-text {
+    font-size: x-large;
+    font-weight: bold;
+    border-color: #FFDA58;
+    border-style: solid;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0; 
+    width: fit-content;
+    height: 45px;
+    border-width: 2px;
+}
+
+.course-card {
+    width: 40%;
+    float: left;
+    margin: 20px
+}
+
+.detail-card { 
+    margin: 20px;
+}
+
+.card-container {
+    height: 90vh;
+    overflow-y: scroll;
+}
+
+.add-button {
+    color: gray;
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    align-items: center;
+
+}

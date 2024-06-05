@@ -1,16 +1,35 @@
-import { NgFor } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
+import { Component, Inject } from '@angular/core';
 import { Courses } from '../courses';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap, catchError, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { CourseDetailComponent } from '../course-detail/course-detail.component';
 import {MatGridListModule} from '@angular/material/grid-list';
+import {MatListModule} from '@angular/material/list';
+import {MatCardModule} from '@angular/material/card';
+import { MatButton, MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
+
+import {
+  MatDialog,
+  MAT_DIALOG_DATA,
+  MatDialogRef,
+  MatDialogTitle,
+  MatDialogContent,
+  MatDialogActions,
+  MatDialogClose,
+} from '@angular/material/dialog';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
 
 @Component({
   selector: 'app-course-list',
   standalone: true,
-  imports: [NgFor, CourseDetailComponent, MatGridListModule],
+  imports: [NgFor, CourseDetailComponent, MatGridListModule, MatCardModule, MatButtonModule, MatIconModule, MatListModule,
+    NgIf
+  ],
   templateUrl: './course-list.component.html',
   styleUrl: './course-list.component.css'
 })
@@ -26,7 +45,7 @@ export class CourseListComponent {
   baseUrl : string = 'https://json-server-vercel-matt-krauskopfs-projects.vercel.app/';
   coursesUrl : string = this.baseUrl + "courses";
 
-  constructor(private http : HttpClient) {
+  constructor(private http : HttpClient, public dialog: MatDialog) {
     this.initCourses().subscribe(c => this.courses = c);
   }
 
@@ -39,6 +58,14 @@ export class CourseListComponent {
     .pipe(
       tap(_ => console.log('Fetched Courses')),
       catchError(this.handleError<Courses[]>('initCourses')));
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(AddCourseDialog);
+
+    dialogRef.afterClosed().subscribe(newCourse => {
+      this.addNewCourse(newCourse);
+    });
   }
 
   addNewCourse(name : String) {
@@ -72,5 +99,31 @@ export class CourseListComponent {
 
       return of(result as T);
     }
+  }
+}
+
+@Component({
+  selector: "dialog-add-course",
+  standalone: true,
+  templateUrl: "./add-course-dialog.html",
+  imports: [
+    MatFormFieldModule,
+    MatInputModule,
+    FormsModule,
+    MatButtonModule,
+    MatDialogTitle,
+    MatDialogContent,
+    MatDialogActions,
+    MatDialogClose,
+  ]
+})
+export class AddCourseDialog {
+  constructor(
+    public dialogRef: MatDialogRef<AddCourseDialog>,
+    @Inject(MAT_DIALOG_DATA) public newCourse: string,
+  ) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 }

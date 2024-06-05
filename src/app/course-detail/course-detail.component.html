@@ -1,5 +1,9 @@
 <div *ngIf="course">
-    <h3>{{course.name}}</h3>
-    <label for="name">Course Name:</label>
-    <input id="name" [(ngModel)]="course.name" placeholder="name">
+    <div class="header-text">Editing {{course.name}}</div>
+    <form>
+        <mat-form-field class="name-form">
+            <mat-label>Course Name</mat-label>
+            <input matInput id="couseName" [name]="course.name" [(ngModel)]="course.name" value={{course.name}}>
+        </mat-form-field>
+    </form>
 </div>
