@@ -10,7 +10,7 @@ import { MatInputModule } from '@angular/material/input';
   standalone: true,
   imports: [NgIf, FormsModule, MatFormFieldModule, MatInputModule],
   templateUrl: './course-detail.component.html',
-  styleUrl: './course-detail.component.css'
+  styleUrl: './course-detail.component.scss'
 })
 export class CourseDetailComponent {
   @Input() course? : Courses;

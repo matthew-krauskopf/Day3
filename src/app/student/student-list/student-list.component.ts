@@ -30,7 +30,7 @@ import {MatInputModule} from '@angular/material/input';
     MatCardModule, MatButtonModule, MatIconModule
   ],
   templateUrl: './student-list.component.html',
-  styleUrl: './student-list.component.css'
+  styleUrl: './student-list.component.scss'
 })
 export class StudentListComponent {
 

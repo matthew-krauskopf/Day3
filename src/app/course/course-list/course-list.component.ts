@@ -29,7 +29,7 @@ import {MatInputModule} from '@angular/material/input';
     NgIf
   ],
   templateUrl: './course-list.component.html',
-  styleUrl: './course-list.component.css'
+  styleUrl: './course-list.component.scss'
 })
 
 @Injectable({

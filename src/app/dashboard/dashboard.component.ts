@@ -17,7 +17,7 @@ import { Observable, tap, catchError, of } from 'rxjs';
   imports: [MatSidenavModule, StudentListComponent, CourseListComponent, NgIf,
     MatButtonModule, MatGridListModule, MatIconModule],
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+  styleUrl: './dashboard.component.scss'
 })
 export class DashboardComponent implements OnInit {
   baseUrl : string = 'https://json-server-vercel-matt-krauskopfs-projects.vercel.app/';

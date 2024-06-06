@@ -12,6 +12,6 @@ import { TopBarComponent } from './top-bar/top-bar.component';
   standalone: true,
   imports: [TopBarComponent, DashboardComponent, RouterOutlet, CommonModule, HttpClientModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.scss'
 })
 export class AppComponent {}
