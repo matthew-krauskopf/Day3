@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Students } from '../students';
-import { Courses } from '../courses';
-import { NgFor, NgIf } from '@angular/common'; 
+import { Courses } from '../../course/courses';
+import { CommonModule } from '@angular/common'; 
 import { FormsModule } from '@angular/forms'; // <-- NgModel lives here
 import { StudentDetailComponent } from '../student-detail/student-detail.component';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -26,7 +26,7 @@ import {MatInputModule} from '@angular/material/input';
 @Component({
   selector: 'app-student-list',
   standalone: true,
-  imports: [ FormsModule, NgIf, NgFor, StudentDetailComponent, MatGridListModule, MatButton, MatDividerModule, MatListModule ,
+  imports: [ FormsModule, CommonModule, StudentDetailComponent, MatGridListModule, MatButton, MatDividerModule, MatListModule,
     MatCardModule, MatButtonModule, MatIconModule
   ],
   templateUrl: './student-list.component.html',

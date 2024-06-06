@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { CourseListComponent } from '../course-list/course-list.component';
-import { StudentListComponent } from '../student-list/student-list.component';
+import { CourseListComponent } from '../course/course-list/course-list.component';
+import { StudentListComponent } from '../student/student-list/student-list.component';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {MatButtonModule} from '@angular/material/button';
 import { NgIf } from '@angular/common';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatIconModule} from '@angular/material/icon';
-import { Students } from '../students';
-import { Courses } from '../courses';
+import { Students } from '../student/students';
+import { Courses } from '../course/courses';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap, catchError, of } from 'rxjs';
 

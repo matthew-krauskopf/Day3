@@ -6,4 +6,10 @@
 .button { 
     width: 100%;
     justify-content: left;
+    color: #767676; 
 }
+
+.mat-mdc-button:has(.material-icons,mat-icon,[matButtonIcon]) {
+    padding: 25px 10px;
+}
+

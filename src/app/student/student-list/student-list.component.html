@@ -1,12 +1,12 @@
 <div class="card-container">
   <mat-card class="student-card">
+    <div class="flex justify-content-between">
+      <span mat-card-title>Students</span>
+      <button class="add-button" mat-icon-button (click)="openDialog()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
     <mat-card-content>
-      <div class="header-text">
-        <span>Students</span>
-        <button class="add-button" mat-icon-button (click)="openDialog()">
-          <mat-icon>add</mat-icon>
-        </button>
-      </div>
       <div>
         <mat-list>
           <mat-list-item *ngFor="let student of students">
