@@ -1,24 +1,26 @@
-<div class="card-container">
-  <mat-card class="course-card">
+<div class="flex justify-content-between flex-column-gap-8">
+  <mat-card class="flex-1 fit-height" [style.max-width]="'40%'">
+    <div class="flex justify-content-between padding-8 align-items-center">
+      <span class="yellow-underline header-text">Courses</span>
+      <button class="add-button" mat-icon-button (click)="openDialog()">
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
     <mat-card-content>
-      <div class="header-text">
-        <span>Courses</span>
-        <button class="add-button" mat-icon-button (click)="openDialog()"><mat-icon>add</mat-icon></button>
-      </div>
       <div>
         <mat-list>
-          <mat-list-item *ngFor="let course of courses">
-            <button class="course-button" mat-button (click)="onSelect(course)">{{course.name}}</button>
-            <button class="close-button" mat-button
-              (click)="deleteCourse(course)"><mat-icon>close</mat-icon></button>
-          </mat-list-item>
+          <ng-container *ngFor="let course of courses; let i=index">
+            <mat-list-item class = "padding-y-10">
+              <div class="flex justify-content-between align-items-center">
+                <div class="pointer" (click)="onSelect(course)">{{course.name}}</div>
+                <button class="close-button" mat-button (click)="deleteCourse(course)"><mat-icon>close</mat-icon></button>
+              </div>
+            </mat-list-item>
+            <mat-divider *ngIf="i != courses.length - 1"></mat-divider>
+          </ng-container>
         </mat-list>
       </div>
     </mat-card-content>
   </mat-card>
-  <mat-card *ngIf="selectedCourse" class="detail-card">
-    <mat-card-content>
-      <app-course-detail [course]="selectedCourse"></app-course-detail>
-    </mat-card-content>
-  </mat-card>
+  <app-course-detail class="flex-1" *ngIf="selectedCourse"[course]="selectedCourse"></app-course-detail>
 </div>

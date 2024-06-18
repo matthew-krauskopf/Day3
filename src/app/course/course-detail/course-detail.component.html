@@ -1,9 +1,11 @@
-<div *ngIf="course">
-    <div class="header-text">Editing {{course.name}}</div>
-    <form>
-        <mat-form-field class="name-form">
-            <mat-label>Course Name</mat-label>
-            <input matInput id="couseName" [name]="course.name" [(ngModel)]="course.name" value={{course.name}}>
-        </mat-form-field>
-    </form>
-</div>
+<mat-card class="detail-card">
+    <mat-card-content>
+        <div class="header-text yellow-underline font-bold">Editing {{course.name}}</div>
+        <form>
+            <mat-form-field class="width-100">
+                <mat-label>Course Name</mat-label>
+                <input matInput id="couseName" [name]="course.name" [(ngModel)]="course.name" value={{course.name}}>
+            </mat-form-field>
+        </form>
+    </mat-card-content>
+</mat-card>

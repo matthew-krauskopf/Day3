@@ -52,6 +52,10 @@ body {
     width: 100%;
 }
 
+.pointer {
+  cursor: pointer;
+}
+
 /* WHAT IS GOING ON (MIXINS) */
 
 @mixin generate-spacing ($upper-limit){

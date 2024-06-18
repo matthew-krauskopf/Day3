@@ -1,5 +1,5 @@
 <div class="flex justify-content-between flex-column-gap-8">
-  <mat-card class="student-card flex-1 fit-height" [style.max-width]="'40%'">
+  <mat-card class="flex-1 fit-height" [style.max-width]="'40%'">
     <div class="flex justify-content-between padding-8 align-items-center">
       <span class="yellow-underline header-text" mat-card-title>Students</span>
       <button class="add-button" mat-icon-button (click)="openDialog()">
@@ -12,7 +12,7 @@
           <ng-container *ngFor="let student of students; let i=index">
             <mat-list-item class="padding-y-10">
               <div class="flex justify-content-between align-items-center">
-                <div (click)="onSelect(student)">
+                <div class="pointer" (click)="onSelect(student)">
                   <div>{{student.firstName}} {{student.lastName}}</div>
                   <div>
                     <span class="font-bold">Is Active?</span> 
