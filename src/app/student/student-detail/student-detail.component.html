@@ -26,11 +26,14 @@
         </button>
       </div>
       <mat-list>
-        <mat-list-item *ngFor="let course of getStudentsCourses()">
-          <label>{{course.name}}</label>
-          <button mat-button (click)="removeCourse(course.id)"><mat-icon>close</mat-icon></button>
+        <mat-list-item *ngFor="let course of tempEnrolledCourses">
+          <mat-checkbox [checked]="course.active" (change)="updateChecked($event.checked, course)">{{course.course.name}}</mat-checkbox>
         </mat-list-item>
       </mat-list>
+      <div>
+        <button mat-button (click)="saveCourseUpdates()">Save</button>
+        <button mat-button (click)="resetTempCourses()">Cancel</button>
+      </div>
     </div>
   </mat-card-content>
 </mat-card>

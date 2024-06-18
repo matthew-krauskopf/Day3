@@ -1,4 +1,4 @@
-import { Component, Input, Inject } from '@angular/core';
+import { Component, Input, Inject, AfterContentInit, OnChanges } from '@angular/core';
 import { Students } from '../students';
 import { NgIf, NgFor } from '@angular/common'; 
 import { FormsModule } from '@angular/forms';
@@ -32,15 +32,25 @@ import { MatCardModule } from '@angular/material/card';
   templateUrl: './student-detail.component.html',
   styleUrl: './student-detail.component.scss'
 })
-export class StudentDetailComponent {
+export class StudentDetailComponent implements AfterContentInit, OnChanges {
 
   @Input() student! : Students;
   @Input() courses! : Courses[];
 
+  tempEnrolledCourses! : CheckboxCourse[];
+
   constructor(public dialog : MatDialog) {}
 
+  ngAfterContentInit(): void {
+    this.resetTempCourses();
+  }
+
+  ngOnChanges(): void {
+    this.resetTempCourses();
+  }
+
   openDialog() : void {
-    const dialogRef = this.dialog.open(AddCourseDialog, {data : this.courses});
+    const dialogRef = this.dialog.open(AddCourseDialog, {data : this.unenrolledCourses()});
 
     dialogRef.afterClosed().subscribe(courseId => {
       if (courseId) {  
@@ -49,19 +59,53 @@ export class StudentDetailComponent {
     })
   }
 
-  removeCourse(removedId : number) : void {
-    this.student!.enrolledCourses = this.student!.enrolledCourses.filter(id => id != removedId);
+  unenrolledCourses() : Courses[] {
+    return this.courses.filter((course) => !this.tempEnrolledCourses.map(c => c.course.id).includes(course.id));
   }
 
   addCourse(courseId : number) {
-    if (this.student!.isActive == true && courseId && courseId != -1 && !this.student!.enrolledCourses.includes(courseId)) {
-       this.student!.enrolledCourses.push(courseId);
+    if (this.student!.isActive == true && courseId && courseId != -1) {
+       this.tempEnrolledCourses.push(this.checkboxCourseFactory(this.courses.filter(c => c.id === courseId)[0]));
     }
   }
 
   getStudentsCourses() : Courses[] {
-    return this.courses.filter((course) => this.student!.enrolledCourses.includes(course.id));
+    return this.courses.filter((course) => this.tempEnrolledCourses.map(c => c.course.id).includes(course.id));
   }
+
+  saveCourseUpdates() {
+    this.student.enrolledCourses = [];
+    for (let c of this.tempEnrolledCourses) {
+      if (c.active) {
+        this.student.enrolledCourses.push(c.course.id)
+      }
+    }
+    this.resetTempCourses();
+  }
+
+  resetTempCourses() {
+    this.tempEnrolledCourses = [];
+    for (let courseId of this.student.enrolledCourses) {
+      this.tempEnrolledCourses.push(this.checkboxCourseFactory(this.courses.filter(c => c.id === courseId)[0]));
+    }
+  }
+
+  checkboxCourseFactory(course : Courses) : CheckboxCourse {
+    let c : CheckboxCourse = {
+      "active" : true,
+      "course" : course
+    }
+    return c;
+  }
+
+  updateChecked(checked : boolean, course : CheckboxCourse) {
+    course.active = checked;
+  }
+}
+
+interface CheckboxCourse {
+  active: boolean,
+  course : Courses
 }
 
 @Component({

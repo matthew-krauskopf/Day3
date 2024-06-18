@@ -27,6 +27,10 @@ body {
     flex-direction: column;
 }
 
+.fit-height {
+    height: fit-content
+}
+
 .yellow-underline {
     border-color: #FFDA58;
     border-style: solid;
