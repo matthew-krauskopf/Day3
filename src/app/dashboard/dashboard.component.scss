@@ -1,6 +1,11 @@
 .mat-side-nav {
     height: 100%;
     width: 10%;
+    --mdc-text-button-label-text-color:#767676;
+}
+
+.mat-drawer-container {
+    height: calc(100% - 64px)
 }
 
 .button { 

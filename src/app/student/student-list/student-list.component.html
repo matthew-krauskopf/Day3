@@ -1,7 +1,7 @@
-<div class="card-container">
-  <mat-card class="student-card">
-    <div class="flex justify-content-between">
-      <span mat-card-title>Students</span>
+<div class="flex justify-content-between flex-column-gap-8">
+  <mat-card class="student-card flex-1" [style.max-width]="'40%'">
+    <div class="flex justify-content-between padding-8 align-items-center">
+      <span class="yellow-underline header-text" mat-card-title>Students</span>
       <button class="add-button" mat-icon-button (click)="openDialog()">
         <mat-icon>add</mat-icon>
       </button>
@@ -9,22 +9,25 @@
     <mat-card-content>
       <div>
         <mat-list>
-          <mat-list-item *ngFor="let student of students">
-            <button class="student-button" mat-button type="button" (click)="onSelect(student)">
-              <span>{{student.firstName}} {{student.lastName}}</span><br>
-              <span>Is Active? {{student.isActive}}</span>
-            </button>
-            <span class="example-spacer"></span>
-            <button mat-button class="close-button"
-              (click)="deleteStudent(student); selectedStudent = undefined"><mat-icon>close</mat-icon></button>
-          </mat-list-item>
+          <ng-container *ngFor="let student of students; let i=index">
+            <mat-list-item class="padding-y-10">
+              <div class="flex justify-content-between align-items-center">
+                <div (click)="onSelect(student)">
+                  <div>{{student.firstName}} {{student.lastName}}</div>
+                  <div>
+                    <span class="font-bold">Is Active?</span> 
+                    {{student.isActive}}
+                  </div>
+                </div>
+                <button mat-button class="close-button"
+                  (click)="deleteStudent(student); selectedStudent = undefined"><mat-icon>close</mat-icon></button>
+              </div>
+            </mat-list-item>
+            <mat-divider *ngIf="i != students.length-1"></mat-divider>
+          </ng-container>
         </mat-list>
       </div>
     </mat-card-content>
   </mat-card>
-  <mat-card *ngIf="selectedStudent" class="detail-card">
-    <mat-card-content>
-      <app-student-detail [student]="selectedStudent" [courses]="courses"></app-student-detail>
-    </mat-card-content>
-  </mat-card>
+  <app-student-detail class="flex-1" *ngIf="selectedStudent" [student]="selectedStudent" [courses]="courses"></app-student-detail>
 </div>

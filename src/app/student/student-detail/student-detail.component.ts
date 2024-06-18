@@ -21,19 +21,20 @@ import {
   MatDialogActions,
   MatDialogClose,
 } from '@angular/material/dialog';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-student-detail',
   standalone: true,
   imports: [NgFor, NgIf, FormsModule, CourseListComponent, MatInputModule, MatFormFieldModule, MatCheckboxModule, MatListModule,
-    MatButtonModule, MatIconModule
+    MatButtonModule, MatIconModule, MatCardModule
   ],
   templateUrl: './student-detail.component.html',
   styleUrl: './student-detail.component.scss'
 })
 export class StudentDetailComponent {
 
-  @Input() student? : Students;
+  @Input() student! : Students;
   @Input() courses! : Courses[];
 
   constructor(public dialog : MatDialog) {}

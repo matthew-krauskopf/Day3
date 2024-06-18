@@ -2,7 +2,6 @@
 
 html, body { height: 100%; }
 body {
-    --mdc-text-button-label-text-color:#767676;
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif; 
 }
@@ -27,3 +26,58 @@ body {
 .flex-stack {
     flex-direction: column;
 }
+
+.yellow-underline {
+    border-color: #FFDA58;
+    border-style: solid;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0; 
+    border-width: 2px;
+}
+
+.font-bold {
+    font-weight: bold;
+}
+
+.height-100 {
+    height: 100%;
+}
+
+.width-100 {
+    width: 100%;
+}
+
+/* WHAT IS GOING ON (MIXINS) */
+
+@mixin generate-spacing ($upper-limit){
+    @for $i from 1 to $upper-limit {
+        .padding-#{$i} {
+            padding: $i * 2px;
+        }
+        
+        .padding-x-#{$i} {
+            padding-left: $i * 2px;
+            padding-right: $i * 2px;
+        }
+
+        .padding-y-#{$i} {
+            padding-top: $i * 2px;
+            padding-bottom: $i * 2px;
+        }
+
+        .flex-column-gap-#{$i} {
+            column-gap: $i * 2px;
+        }
+
+        .flex-row-gap-#{$i} {
+            row-gap: $i * 2px;
+        }
+
+        .flex-#{$i} {
+            flex: $i;
+        }
+    }
+}
+
+@include generate-spacing(16);

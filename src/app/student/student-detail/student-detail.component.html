@@ -1,33 +1,36 @@
-<div *ngIf="student">
-  <div>
-    <div class="header-text">Editing {{student.firstName}} {{student.lastName}}</div>
-    <form>
-      <mat-form-field class="name-form">
-        <mat-label>First Name</mat-label>
-        <input matInput id="firstName" [name]="student.firstName" [(ngModel)]="student.firstName" value={{student.firstName}}>
-      </mat-form-field>
-      <br>
-      <mat-form-field class="name-form">
-        <mat-label>Last Name</mat-label>
-        <input matInput id="lastName" [name]="student.lastName" [(ngModel)]="student.lastName" value={{student.lastName}}>
-      </mat-form-field>
-    </form>
-  </div>
-  <div>
-    <mat-checkbox class="active-checkbox" color=blue [(ngModel)]="student.isActive">Active</mat-checkbox>
-  </div>
-  <div *ngIf="student.isActive">
+<mat-card class="detail-card">
+  <mat-card-content>
     <div>
-    <label for="enrolledCourses"><span class="courses-text">Enrolled Courses</span></label>
-    <button class="add-button" (click)="openDialog()" mat-icon-button>
-      <mat-icon>add</mat-icon>
-    </button>
-  </div>
-    <mat-list>
-      <mat-list-item *ngFor = "let course of getStudentsCourses()">
-        <label>{{course.name}}</label>
-        <button mat-button (click)="removeCourse(course.id)"><mat-icon>close</mat-icon></button>
-      </mat-list-item>
-    </mat-list>
-  </div>
-</div>
+      <div class="header-text">Editing {{student.firstName}} {{student.lastName}}</div>
+      <form>
+        <mat-form-field class="width-100">
+          <mat-label>First Name</mat-label>
+          <input matInput id="firstName" [name]="student.firstName" [(ngModel)]="student.firstName"
+            value={{student.firstName}}>
+        </mat-form-field>
+        <mat-form-field class="width-100">
+          <mat-label>Last Name</mat-label>
+          <input matInput id="lastName" [name]="student.lastName" [(ngModel)]="student.lastName"
+            value={{student.lastName}}>
+        </mat-form-field>
+      </form>
+    </div>
+    <div>
+      <mat-checkbox class="active-checkbox" color=blue [(ngModel)]="student.isActive">Active</mat-checkbox>
+    </div>
+    <div *ngIf="student.isActive">
+      <div class="flex flex-column-gap-8 align-items-center">
+        <label for="enrolledCourses"><span class="courses-text">Enrolled Courses</span></label>
+        <button class="add-button" (click)="openDialog()" mat-icon-button>
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <mat-list>
+        <mat-list-item *ngFor="let course of getStudentsCourses()">
+          <label>{{course.name}}</label>
+          <button mat-button (click)="removeCourse(course.id)"><mat-icon>close</mat-icon></button>
+        </mat-list-item>
+      </mat-list>
+    </div>
+  </mat-card-content>
+</mat-card>

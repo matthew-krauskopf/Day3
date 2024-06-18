@@ -5,7 +5,7 @@
         <div><button class="button" mat-button (click)="coursesPage()"><mat-icon>format_list_bulleted</mat-icon>Courses</button></div>
     </mat-sidenav>
     <mat-sidenav-content>
-        <div id="studentPanel">
+        <div id="studentPanel" class="padding-8">
             <app-student-list [students]="students" [courses]="courses" ></app-student-list>
         </div>
         <div id="coursePanel">

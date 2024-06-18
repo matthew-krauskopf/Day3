@@ -14,23 +14,14 @@
     width: 5%
 }
 
+
 .header-text {
     font-size: x-large;
     font-weight: bold;
-    border-color: #FFDA58;
-    border-style: solid;
-    border-left: 0;
-    border-right: 0;
-    border-top: 0; 
-    width: fit-content;
-    height: 45px;
-    border-width: 2px;
+    padding-bottom: 10px;
 }
 
 .student-card {
-    width: 40%;
-    float: left;
-    margin: 20px
 }
 
 .detail-card { 
@@ -38,8 +29,8 @@
 }
 
 .card-container {
-    height: 90vh;
-    overflow-y: scroll;
+//     height: 90vh;
+//     overflow-y: scroll;
 }
 
 .add-button {
@@ -49,4 +40,8 @@
     padding: 0;
     align-items: center;
 
+}
+
+.mdc-list-item {
+    padding: 32px 16px
 }
